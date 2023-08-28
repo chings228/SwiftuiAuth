@@ -12,7 +12,7 @@ struct ProfileView: View {
         List{
             Section{
                 HStack {
-                    Text("MJ")
+                    Text(User.MOCK_USER.initials)
                         .font(.title)
                         .foregroundColor(.white)
                         .frame(width:77,height:72)
@@ -20,14 +20,14 @@ struct ProfileView: View {
                         .clipShape(Circle())
                     
                     VStack(alignment: .leading,spacing: 4){
-                        Text("Michael Jordon")
+                        Text(User.MOCK_USER.fullname)
                             .font(.subheadline)
                             .fontWeight(.semibold)
                             .padding(.top,4)
                         
-                        Text("test@gmail.com")
+                        Text(User.MOCK_USER.email)
                             .font(.footnote)
-                            .accentColor(.gray)
+                            .foregroundColor(.gray)
                         
                         
                         
@@ -58,7 +58,7 @@ struct ProfileView: View {
                 
                 HStack{
                     
-                    SettingRowView(imageName: "gear", title: "Version", tintColor: Color(.systemGray))
+                    SettingRowView(imageName: "arrow.left.circle.fill", title: "Sign out", tintColor: Color(.systemGray))
                     Spacer()
                     
                     Text("1.0.0")
@@ -68,7 +68,7 @@ struct ProfileView: View {
                 
                 HStack{
                     
-                    SettingRowView(imageName: "gear", title: "Version", tintColor: Color(.systemGray))
+                    SettingRowView(imageName: "xmark.circle.fill", title: "Delete Account", tintColor: Color(.systemGray))
                     Spacer()
                     
                     Text("1.0.0")
