@@ -15,6 +15,8 @@ struct RegistrationView: View {
     @State private var fullname = ""
     
     @Environment(\.dismiss) var dismiss
+    
+    @EnvironmentObject var viewModel : AuthViewModel
 
     
     
@@ -56,6 +58,10 @@ struct RegistrationView: View {
             Button{
                 print("");
                 
+                Task{
+                    try await viewModel.createUser(withEmail: email, password: password, fullname: fullname)
+                }
+                
             } label:{
                 HStack{
                     
@@ -69,6 +75,8 @@ struct RegistrationView: View {
             .background(Color(.systemBlue))
             .cornerRadius(10)
             .padding(.top,24)
+            .disabled(!formIsValid)
+            .opacity(formIsValid ? 1.0 : 0.5)
             
             
             
@@ -93,6 +101,23 @@ struct RegistrationView: View {
             
         }
     }
+}
+
+
+
+extension RegistrationView : AuthenticationFormProtocol{
+    
+    var formIsValid: Bool{
+        
+        return !email.isEmpty
+        && email.contains("@")
+        && !password.isEmpty
+        && password.count > 5
+        && !fullname.isEmpty
+        && confirmPassword == password
+        
+    }
+    
 }
 
 struct RegistrationView_Previews: PreviewProvider {

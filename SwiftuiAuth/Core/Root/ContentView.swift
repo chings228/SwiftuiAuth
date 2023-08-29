@@ -8,20 +8,28 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @EnvironmentObject var viewModel : AuthViewModel
+    
+    
     var body: some View {
-        VStack {
 
-
+        
+        Group{
+            
+            if (viewModel.userSession != nil){
+ 
+                ProfileView()
                 
-                VStack{
-                    
-                    Text("xx")
-                    
-                    
-                    
-                }
+            } else{
                 
+                LoginView()
             }
+            
+        }
+
+            
+        
 
     }
 }
@@ -29,5 +37,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(AuthViewModel())
     }
 }
